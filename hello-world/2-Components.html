@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <title>Hello world</title>
+</head>
+<body>
+    <div id="container">
+    </div>
+    <script type="text/javascript">
+        const h1 = React.createElement('h1',null,'Hello World, Hello React !')
+        const p = React.createElement('p',null,'Hello world paragraphe')
+        const div = React.createElement('div',null,[h1,p])
+
+        class HelloWorldComponent extends React.Component{
+            render(){
+                return div
+            }
+        }
+        ReactDOM.render(React.createElement(HelloWorldComponent),document.getElementById('container'))
+    </script>
+</body>
+</html>

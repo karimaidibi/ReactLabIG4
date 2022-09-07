@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <title>Todo List Lab React</title>
+</head>
+<body>
+
+    <div id="container">
+    </div>
+
+    <script type="text/javascript">
+        //container
+        const container = document.getElementById('container')
+
+        //title
+        const title = React.createElement('h1',null,'TodoList')
+        
+        //component of a single task
+        class Task extends React.Component{
+            render(){
+                return React.createElement('li',null,this.props.taskName)
+            }
+        }
+
+        //component of list of tasks
+        class TasksList extends React.Component{
+            render(){
+                return React.createElement('div',{style : {display : 'inline-block'}},
+                        React.createElement('h2',null,this.props.todoListName),
+                        React.createElement('ul',null,
+                            this.props.tasks.map(t => React.createElement(Task,{taskName : t}))
+                        ),
+                        React.createElement(TaskForm)
+                    )
+            }
+        }
+
+        //taskForm
+        class TaskForm extends React.Component{
+            render(){
+                return React.createElement('div',null,
+                    React.createElement('input', {name:'newTask'}),
+                    React.createElement('input',{type:'submit'}))
+            }
+        }
+
+        const Todo = React.createElement(TasksList,{todoListName : "Todo", tasks : ['Buy Milk','Call Mom']})
+        const WIP = React.createElement(TasksList,{todoListName : 'WIP',tasks : ['AWI Project','Call Mom']})
+        const mainDiv = React.createElement('div',null,title,Todo,WIP)
+        
+        // render the page
+        ReactDOM.render(mainDiv,container)
+
+    </script>
+</body>
+</html>
