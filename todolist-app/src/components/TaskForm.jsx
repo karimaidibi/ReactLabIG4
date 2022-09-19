@@ -1,36 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 //taskForm
-class TaskForm extends React.Component{
+function TaskForm(props){
 
-    constructor(props){
-        super(props)
-        this.state = {
-            newTask : ""
-        }
+    //init 
+    const [newTask, setTask] = useState("")
 
-        this.handleChange = (event) => {
-            this.setState({
-                newTask : event.target.value
-            })
-        }
-
-        this.submit = () =>{
-            this.props.handleClick(this.state.newTask)
-            this.setState({
-                newTask : ""
-            })
-        } 
+    //handle
+    const handleChange = (event) => {
+            setTask(event.target.value)
     }
 
-    render(){
-        return (
-            <div>
-                <input name = "newTask" onChange = {this.handleChange} value={this.state.newTask}></input>
-                <input type = "submit" onClick = {this.submit}></input>
-            </div>
-        )
+    const submit = () =>{
+        props.handleClick(newTask)
+        setTask("")
     }
+
+    //return UI
+    return (
+        <div>
+            <input name = "newTask" onChange = {handleChange} value={newTask}></input>
+            <input type = "submit" onClick = {submit}></input>
+        </div>
+    )
 }
 
 export default TaskForm
